@@ -1,1 +1,43 @@
 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void SelectionSort(vector<int>& A) {
+    int n = A.size();
+    for (int i = 0; i < n - 1; i++) {
+        int max_idx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (A[j] > A[max_idx]) {
+                max_idx = j;
+            }
+        }
+        swap(A[i], A[max_idx]);
+    }
+}
+
+int main() {
+    vector<int> A;
+    int x;
+    
+    // Читаем все числа до конца ввода
+    while (cin >> x) {
+        A.push_back(x);
+    }
+    
+    SelectionSort(A);
+    
+    // Выводим числа через пробел
+    for (int i = 0; i < A.size(); i++) {
+        if (i > 0) cout << " ";
+        cout << A[i];
+    }
+    cout << endl;
+    
+    return 0;
+}
+
+
+
+
