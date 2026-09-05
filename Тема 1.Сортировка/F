@@ -1,1 +1,58 @@
+#include <iostream>
+#include <vector>
+#include <algorithm> 
+using namespace std;
 
+
+int Razbienie(vector<int>& A, int left, int right) {
+    // opredeliaem opor_ind
+    int opor_ind = left + (right - left) / 2;
+    int opor_el = A[opor_ind];
+    
+    int i = left;
+    int j = right;
+    
+    while (i <= j) {
+        while (A[i] < opor_el) {
+            i++;
+        }
+        while (A[j] > opor_el) {
+            j--;
+        }
+        if (i <= j) {
+            swap(A[i], A[j]);
+            i++; 
+            j--; 
+        }
+    }
+    return i; //nov opor_ind dlia sortirovki
+}
+void BistryiSort(vector<int>& A, int left, int right) {
+   // esli na otrezke 0 ili1 el (uze otsortirovan)
+   if (left >= right) {
+        return;
+    }
+    int opor_ind = Razbienie(A, left, right);
+    BistryiSort(A, left, opor_ind - 1);
+    
+    BistryiSort(A, opor_ind, right);
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> A(n);
+    for (int i = 0; i < n; i++) {
+        cin >> A[i];
+    }
+    
+    BistryiSort(A, 0, n - 1);
+    
+    for (int i = 0; i < n; i++) {
+        cout << A[i]<<" ";
+    }
+    cout << "\n";
+
+    
+    return 0;
+}
