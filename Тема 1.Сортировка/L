@@ -1,1 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <string>
+using namespace std;
 
+int main() {
+    string line1, line2;
+    getline(cin, line1);
+    getline(cin, line2);
+    
+    vector<int> distances, tariffs;
+    
+    istringstream iss1(line1);
+    int x;
+    while (iss1 >> x) {
+        distances.push_back(x);
+    }
+    
+    istringstream iss2(line2);
+    while (iss2 >> x) {
+        tariffs.push_back(x);
+    }
+    
+    int n = distances.size();
+    
+    sort(distances.begin(), distances.end(), greater<int>());
+    
+    sort(tariffs.begin(), tariffs.end());
+    
+    int totalCost = 0;
+    for (int i = 0; i < n; i++) {
+        totalCost += distances[i] * tariffs[i];
+    }
+    
+    cout << totalCost << endl;
+    
+    return 0;
+}
