@@ -1,1 +1,79 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void SlyianiePodmassiv(vector<int>& A, int left, int mid, int right) {
+    //index levovo i pravovo massivov
+	int lft = left;
+    int rht = mid;
+    // dlina levovo i pravovo massivov
+    int razmer_rht = right - mid+1;
+    int razmer_lft = mid-left;
+	// delaem copii massivov
+	vector<int> left_copy(razmer_lft), right_copy(razmer_rht);
+	for (int i=0; i<razmer_lft;i++ ){
+		left_copy[i] = A[lft + i];
+	}
+	for (int j = 0; j < razmer_rht; j++){
+		right_copy[j]= A[rht + j];
+	}
+	//soedin massivi v odin
+	int i = 0;
+	int j = 0;
+	int ind = left;
+	while (i < razmer_lft and j < razmer_rht){
+		if(left_copy[i] <= right_copy[j]){
+			A[ind] = left_copy[i];
+			i++;
+		}
+		else{
+			A[ind] = right_copy[j];
+			j++;
+		}
+		ind++;
+	}
+	//kopir ost elementi
+	while (i < razmer_lft){
+		A[ind] = left_copy[i];
+		i++;
+		ind++;
+	}
+	
+	while (j < razmer_rht){
+		A[ind] = right_copy[j];
+		j++;
+		ind++;
+	}	
+}
+//sortirivka sliania
+void SlianieSort(vector<int>& A, int left, int right){
+	if (left < right){
+		//seredina tekuschevo otrezka
+		int mid = left + (right-left)/2+1;
+		//rekursivno sortiruem 1 i 2 polovini
+		SlianieSort(A, left, mid-1);
+		SlianieSort(A, mid, right);
+		//soediniaem polovini
+		SlyianiePodmassiv(A, left, mid, right);
+	}
+}
+int main() {
+    int n;
+    cin >> n;
+    
+    vector<int> A(n);
+    for (int i = 0; i < n; i++) {
+        cin >> A[i];
+    }
+    
+    SlianieSort(A, 0, n - 1);
+    
+    for (int i = 0; i < n; i++) {
+        if (i > 0) cout << " ";
+        cout << A[i];
+    }
+    cout << endl;
+    
+    return 0;
+}
 
