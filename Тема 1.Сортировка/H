@@ -1,1 +1,31 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
 
+struct Point{
+	int x, y;
+	
+};
+
+bool Sort(Point n1, Point n2){
+	return (n1.x * n1.x + n1.y*n1.y) < (n2.x * n2.x + n2.y*n2.y);
+}
+
+int main() {
+	int n;
+	cin >> n;
+	
+	vector <Point> koord_t(n);
+	for (int i = 0; i <n; i++){
+		cin >> koord_t[i].x >> koord_t[i].y;
+	}
+	
+	sort(koord_t.begin(), koord_t.end(), Sort);
+	
+	for (int i = 0; i < n; i++){
+		cout << koord_t[i].x << " " << koord_t[i].y << "\n";
+	}
+	
+	return 0;
+}
