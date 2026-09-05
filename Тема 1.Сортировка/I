@@ -1,1 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
 
+int main() {
+	string n1, n2;
+    cin >> n1, n2;
+    
+    if (n1.length() != n2.length()) {
+        cout << "NO" << endl;
+        return 0;
+    }
+    // {0} - vse el-i zapolnit 0
+    int c[128]={0};
+    
+    // v pamyati bukvi po ASCII -> n1[i] - ne bukva,a kod simvola 
+	// ('a' - 97 i t.d.)
+    for (int i = 0; i < n1.length(); i++) {
+        c[n1[i]]++;
+    }
+    
+    for (int i = 0; i < n2.length(); i++) {
+        c[n2[i]]--;
+    }
+    
+    
+    for (int i = 0; i < 128; i++) {
+        if (c[i] != 0) {
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    
+    cout << "YES" << endl;
+    
+	return 0;
+}
