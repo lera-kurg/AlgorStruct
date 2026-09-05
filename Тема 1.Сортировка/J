@@ -1,1 +1,24 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
 
+int main() {
+	vector<string> chislo; 
+	string c;
+	
+	while(cin>>c){
+		chislo.push_back(c);
+	}
+	sort(chislo.begin(), chislo.end(), [](string&a, string&b) {
+		return a+b > b+a;
+		}
+	);
+	string itog = chislo[0];
+	for (int i = 1; i < chislo.size(); i++) {
+    	itog += chislo[i];
+	}
+	cout << itog;
+	return 0;
+}
