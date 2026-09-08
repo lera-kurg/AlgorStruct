@@ -4,7 +4,7 @@
 using namespace std;
 
 void InsertionSort(vector<int>& A){
-    int n = static_cast<int>(A.size()); 
+    int n = A.size(); 
 
     for (int i = 1; i < n; ++i) { 
         int key = A[i];           
