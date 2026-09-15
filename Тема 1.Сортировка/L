@@ -7,11 +7,13 @@ using namespace std;
 
 int main() {
     string line1, line2;
+// schitaet 2 celie str do \n (cin schitaet do probela) 
     getline(cin, line1);
     getline(cin, line2);
     
     vector<int> distances, tariffs;
-    
+
+// potok vvoda stroki
     istringstream iss1(line1);
     int x;
     while (iss1 >> x) {
@@ -24,9 +26,10 @@ int main() {
     }
     
     int n = distances.size();
-    
+
+// otsortirovat distanciu po ubivaniu
     sort(distances.begin(), distances.end(), greater<int>());
-    
+    // ceni po vozrastaniu
     sort(tariffs.begin(), tariffs.end());
     
     int totalCost = 0;
