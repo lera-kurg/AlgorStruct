@@ -21,6 +21,7 @@ void SlyianiePodmassiv(vector<int>& A, int left, int mid, int right) {
 	int i = 0;
 	int j = 0;
 	int ind = left;
+// sravnivaem el mezdu copiamy pravovo i levovo massivov i otsortirovaniy el zasovivaem v original massiv
 	while (i < razmer_lft and j < razmer_rht){
 		if(left_copy[i] <= right_copy[j]){
 			A[ind] = left_copy[i];
@@ -32,7 +33,7 @@ void SlyianiePodmassiv(vector<int>& A, int left, int mid, int right) {
 		}
 		ind++;
 	}
-	//kopir ost elementi
+	//kopir ost elementi (esli kakoito iz podmassivov bolshe ili v kakom-to iz massivov bolshe min el, to ostav otsort chast zasovivaem v konec)
 	while (i < razmer_lft){
 		A[ind] = left_copy[i];
 		i++;
