@@ -13,7 +13,7 @@ for _ in range(n):
     command = sys.stdin.buffer.readline().split()
 
     if command[0] == b'+':
-        # добав в конец всеё очереди
+        # добав в конец всей очереди
         right.append(int(command[1]))
 
     elif command[0] == b'*':
